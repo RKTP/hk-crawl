@@ -13,7 +13,7 @@ from os import path
 class HkSpider(scrapy.Spider):
     name = "hkc"
     base_url = 'https://hacker-news.firebaseio.com/v0/{}.json?print=pretty'
-    data_dir = os.path.join('/home/rktp/test/hkcrawl/data') 
+    data_dir = os.path.join('/home/rktp/capstone/hkcrawl/data') 
 
     def start_requests(self):
         urls = [

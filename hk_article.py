@@ -9,7 +9,7 @@ from os import path
 
 class HkaSpider(scrapy.Spider):
     name = "hka"
-    data_dir = os.path.join('/home/rktp/test/hkcrawl/data') 
+    data_dir = os.path.join('/home/rktp/capstone/hkcrawl/data') 
 
     def start_requests(self):
         metapaths = os.listdir(path.join(self.data_dir, 'meta'))
@@ -28,7 +28,7 @@ class HkaSpider(scrapy.Spider):
         p_body = response.xpath('/html//p/text()').extract()
         article_body = response.xpath('/html//article/text()').extract()
 
-        res = ''.join(p_body+article_body)
+        res = ''.join(p_body+article_body).replace('   ', '').replace('\r', '').replace('\n', '').replace('\t', '')
         #logging.info(len(res))
 
         if len(res) > 50 and not path.exists(path.join(self.data_dir,'article' ,str(response.meta.get('id'))+'.pkl')):
