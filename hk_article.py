@@ -31,6 +31,6 @@ class HkaSpider(scrapy.Spider):
         res = ''.join(p_body+article_body).replace('   ', '').replace('\r', '').replace('\n', '').replace('\t', '')
         #logging.info(len(res))
 
-        if len(res) > 50 and not path.exists(path.join(self.data_dir,'article' ,str(response.meta.get('id'))+'.pkl')):
+        if len(res) > 5000 and not path.exists(path.join(self.data_dir,'article' ,str(response.meta.get('id'))+'.pkl')):
             with open(os.path.join(self.data_dir, 'article', str(response.meta.get('id'))+'.pkl'), 'wb') as f:
                 pkl.dump(res, f)
